@@ -4,11 +4,16 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace COMP003B.Assignment5.Controllers
 {
+    // Product related IPA request handler
+    [ApiController]
+    [Route("api/[controller]")]
     public class LibraryController : Controller
     {
-        public IActionResult Index()
+        // retrieves product
+        [HttpGet]
+        public ActionResult<List<Library>> GetLibrary()
         {
-            return View();
+            return Ok(AvailableBooks.Library);
         }
     }
 }
