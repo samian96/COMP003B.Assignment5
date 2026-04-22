@@ -39,6 +39,7 @@ namespace COMP003B.Assignment5.Controllers
             return CreatedAtAction(nameof(GetLibrary), new { id = library.Id }, library);
         }
         // should update existing items in the library
+        // Note not sure if I am implementing this right atm
         [HttpPut("{id}")]
 
         public IActionResult UpdateLibrary(int id, Library updateLibrary)
@@ -50,6 +51,20 @@ namespace COMP003B.Assignment5.Controllers
 
             existingLibrary.Name = updateLibrary.Name;
             existingLibrary.Price = updateLibrary.Price;
+
+            return NoContent();
+        }
+        // Should allow user to delete from the library
+        [HttpDelete("{id}")]
+
+        public IActionResult DeleteLibrary(int id)
+        {
+            var library = AvailableBooks.Library.FirstOrDefault(x => x.Id == id);
+
+            if (library is null)
+                return NotFound();
+
+            AvailableBooks.Library.Remove(library);
 
             return NoContent();
         }
