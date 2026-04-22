@@ -9,11 +9,23 @@ namespace COMP003B.Assignment5.Controllers
     [Route("api/[controller]")]
     public class LibraryController : Controller
     {
-        // retrieves product
+        // retrieves full book list in AvailableBooks
         [HttpGet]
         public ActionResult<List<Library>> GetLibrary()
         {
             return Ok(AvailableBooks.Library);
+        }
+        // checks availableBooks by id 
+        [HttpGet("{id}")]
+
+        public ActionResult<Library> GetLibrary(int id)
+        {
+            var library = AvailableBooks.Library.FirstOrDefault(x => x.Id == id);
+            // Should return a 404 message
+            if (library == null)
+                return NotFound();
+
+            return Ok(library);
         }
     }
 }
