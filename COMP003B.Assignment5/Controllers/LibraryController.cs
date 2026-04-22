@@ -38,5 +38,20 @@ namespace COMP003B.Assignment5.Controllers
 
             return CreatedAtAction(nameof(GetLibrary), new { id = library.Id }, library);
         }
+        // should update existing items in the library
+        [HttpPut("{id}")]
+
+        public IActionResult UpdateLibrary(int id, Library updateLibrary)
+        {
+            var existingLibrary = AvailableBooks.Library.FirstOrDefault(x => x.Id == id);
+
+            if (existingLibrary is null)
+                return NotFound();
+
+            existingLibrary.Name = updateLibrary.Name;
+            existingLibrary.Price = updateLibrary.Price;
+
+            return NoContent();
+        }
     }
 }
