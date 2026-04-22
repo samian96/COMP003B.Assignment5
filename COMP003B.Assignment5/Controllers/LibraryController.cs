@@ -27,5 +27,16 @@ namespace COMP003B.Assignment5.Controllers
 
             return Ok(library);
         }
+        // should allow for the creation of a new product and set new id for said product
+        [HttpPost]
+
+        public ActionResult<Library> CreateLibrary(Library library)
+        {
+            library.Id = AvailableBooks.Library.Max(x => x.Id) + 1;
+
+            AvailableBooks.Library.Add(library);
+
+            return CreatedAtAction(nameof(GetLibrary), new { id = library.Id }, library);
+        }
     }
 }
