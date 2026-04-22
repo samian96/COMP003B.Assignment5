@@ -1,4 +1,7 @@
-
+// Author: Samuel Iannazzo
+// Course: COMP-3B
+// Faculty Name: Johnathan Cruz
+// Purpose: Demonstrate CRUD operations via ASP.NET Core Web API
 namespace COMP003B.Assignment5
 {
     public class Program
